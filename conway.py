@@ -8,10 +8,12 @@ WIN = WIDTH, HEIGHT = 1000, 1000
 ROWS = 200  # 200
 CELL_HEIGHT, CELL_WIDTH = WIDTH // ROWS, HEIGHT // ROWS
 WINDOW = pygame.display.set_mode((WIN))
+pygame.display.set_caption("Conway's Game of Life")
 CELL_ROWS = HEIGHT // CELL_HEIGHT  # COULD BE WRONG
 CELL_COLS = WIDTH // CELL_WIDTH
 CLOCK = pygame.time.Clock()
 FPS = 8
+
 
 chances = [1, 0]
 
@@ -48,21 +50,36 @@ def grid(width, cell_height, cell_width, surface, rows):
 def main():
   next_generation = [[0 for _ in range(CELL_COLS)] for i in range(CELL_ROWS)]
   current_generation = [[choice(chances) for _ in range(CELL_COLS)] for i in range(CELL_ROWS)]
-  
+  colors = ["darkgrey", "white", "red", "orange", "yellow", "green", "blue", "purple"]
+  color = colors[0]
+  color_index = 0
   # grid(WIDTH, HEIGHT/ROWS, WIDTH/ROWS, WINDOW, ROWS)  # Moved out of loop
   while True:
-    
+    WINDOW.fill(pygame.Color("black"))
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
     
+    keys = pygame.key.get_pressed()
+    
+    if keys[pygame.K_RIGHT]:
+      color_index += 1
+      if color_index == len(colors):
+        color_index = 0
+      color = colors[color_index]
+
+    if keys[pygame.K_LEFT]:
+      color_index -= 1
+      if color_index == -1:
+        color_index = len(colors) - 1
+      color = colors[color_index]
+    
+
     for col in range(1, CELL_COLS - 1):  # -1 necessary???
       for row in range(1, CELL_ROWS - 1):
         if current_generation[row][col]:
-          draw_cell(WINDOW, col, row, 1)  # Might be flipped
-        else:
-          draw_cell(WINDOW, col, row, 0)
+          draw_cell(WINDOW, col, row, color)  # Might be flipped
 
         next_generation[row][col] = check_cell_neighbors(current_generation, row, col)
     
@@ -71,11 +88,8 @@ def main():
     CLOCK.tick(FPS)
 
 
-def draw_cell(surface, x, y, doa):
-  if doa:
-    pygame.draw.rect(surface, (54, 115, 64), (x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT))  # CHANGE THIS TO COORDINATES
-    return None
-  pygame.draw.rect(surface, (0, 0, 0), (x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT))
-  return None
+def draw_cell(surface, x, y, color):
+  pygame.draw.rect(surface, pygame.Color(color), (x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT))  # CHANGE THIS TO COORDINATES
+  
 
 main()
