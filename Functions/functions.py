@@ -19,12 +19,12 @@ def main():  # Displays the menu options
           pos = pygame.mouse.get_pos()
           print(pos)
 
-          if pos[0] <= 670 and pos[0] >= 320:
-            if pos[1] <= 470 and pos[1] >= 320:
+          if pos[0] <= 470 and pos[0] >= 120:
+            if pos[1] <= 270 and pos[1] >= 120:
               life(current_generation)
           
-          if pos[0] <= 670 and pos[0] >= 320:
-            if pos[1] <= 670 and pos[1] >= 518:
+          if pos[0] <= 470 and pos[0] >= 120:
+            if pos[1] <= 470 and pos[1] >= 320:
               current_generation = [[0 for _ in range(CELL_COLS)] for i in range(CELL_ROWS)]
               sleep(0.1)
               custom_map()
@@ -115,6 +115,7 @@ def custom_map():  # Allows user to choose what cells are alive
     if mouse[0]:
       pos = pygame.mouse.get_pos()
       spawn_cell(WINDOW, *pos)
+      print(pos)
       if pos[0] <= 65:
             if pos[1] <= 35:
               life(current_generation)
