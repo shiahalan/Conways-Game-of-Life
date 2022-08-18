@@ -1,7 +1,7 @@
 # Conway's Game of Life
 
 ## Background:
-Conway's Game of Life is a cellular automaton originally created by John Conway in 1970. The game is a zero-player game where cells interact with eachother by abiding to four rules. Thus, the outcome of the game is predetermined by the initial configuration of what cells are alive and dead.
+Conway's Game of Life is a cellular automaton originally created by John Conway in 1970. The game is a zero-player game where cells interact with each other by abiding to four rules. Thus, the outcome of the game is predetermined by the initial configuration of what cells are alive and dead.
 
 #### Rules of the game:
 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
