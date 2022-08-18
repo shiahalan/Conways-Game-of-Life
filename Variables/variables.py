@@ -6,7 +6,7 @@ from copy import deepcopy
 
 pygame.init()  # Initialize pygame
 
-WIN = WIDTH, HEIGHT = 1000, 1000  # Width and height of the window
+WIN = WIDTH, HEIGHT = 800, 800  # Width and height of the window
 
 ROWS = 200  # Numbers of rows / cols
 
