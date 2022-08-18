@@ -19,6 +19,7 @@ This is a simulation of John Conway's Game of Life using the pygame module in Py
 - Press up arrow key to turn up FPS, Press down arrow key to turn down FPS
 - Left and right arrow keys scroll through cell colors
 - Press space bar to pause / unpause
+- Press and hold 'g' key to see grid
 - pip install -r requirements.txt
 
 ## Creator:
