@@ -81,7 +81,9 @@ def life(current_generation):  # Runs the simulation itself
       if keys[pygame.K_DOWN]:
         if FPS >= 4:
           FPS -= 2
-      
+      if keys[pygame.K_g]:
+        grid(WIDTH, CELL_HEIGHT, CELL_WIDTH, WINDOW, ROWS)
+
       for col in range(1, CELL_COLS - 1):  # -1 necessary???
         for row in range(1, CELL_ROWS - 1):
           if current_generation[row][col]:
@@ -102,8 +104,6 @@ def life(current_generation):  # Runs the simulation itself
 def custom_map():  # Allows user to choose what cells are alive
   while True:
     WINDOW.fill(pygame.Color("black"))
-    pygame.draw.rect(WINDOW, pygame.Color("darkgrey"), (0, 0, 65, 35))
-    WINDOW.blit(custom_instructions_font, (10, 10))
 
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -111,6 +111,11 @@ def custom_map():  # Allows user to choose what cells are alive
         sys.exit()
       
     mouse = pygame.mouse.get_pressed()
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_g]:
+      grid(WIDTH, CELL_HEIGHT, CELL_WIDTH, WINDOW, ROWS)
+
 
     if mouse[0]:
       pos = pygame.mouse.get_pos()
@@ -125,6 +130,8 @@ def custom_map():  # Allows user to choose what cells are alive
           if current_generation[row][col]:
             draw_cell(WINDOW, col, row,"darkgrey")  # Might be flipped
 
+    pygame.draw.rect(WINDOW, pygame.Color("darkgrey"), (0, 0, 65, 35))
+    WINDOW.blit(custom_instructions_font, (10, 10))
     pygame.display.update()
     CLOCK.tick(100)
 
