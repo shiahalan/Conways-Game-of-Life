@@ -11,6 +11,7 @@ Conway's Game of Life is a cellular automaton originally created by John Conway 
 
 ## Description:
 This is a simulation of John Conway's Game of Life using the pygame module in Python.
+
 ![Screenshot](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/855hvk31lxi3pey8o7bu.png)
 
 ## How to use:
